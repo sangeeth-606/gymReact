@@ -1,21 +1,42 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-*{
-    font-family: "Poppins", sans-serif;
-} */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Poppins', sans-serif; /* Set Poppins as the default font */
+  font-family: "Poppins", sans-serif;
 }
 
-span{
-    font-family: inherit;
-    font-weight: inherit;
+span {
+  font-family: inherit;
+  font-weight: inherit;
 }
 
+.blueShadow {
+  background: linear-gradient(
+    145deg,
+    #89b5e6,
+    #4a78b7
+  ); /* Slightly darker blue gradient */
+  color: #ffffff; /* White text */
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15); /* Soft shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.blueShadow:hover {
+  background: linear-gradient(
+    145deg,
+    #4a78b7,
+    #89b5e6
+  ); /* Reverse gradient on hover */
+  transform: translateY(-5px) scale(1.03); /* Slight lift and scale */
+  box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25); /* Deeper shadow on hover */
+}
