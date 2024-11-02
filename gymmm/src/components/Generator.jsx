@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Sectionwrapper from "./Sectionwrapper";
 import { WORKOUTS } from "../utils/swoldier";
 
@@ -19,10 +19,11 @@ function Header(props) {
 }
 
 export default function Generator() {
+  let showModel = false;
 
-
-
-  let showModel=false;
+  function toggleModal() {
+    showModel = !showModel;
+  }
 
   return (
     <Sectionwrapper
@@ -56,14 +57,15 @@ export default function Generator() {
         description={"Select the muscle group you want to target"}
       />
 
-      <div className="bg-slate-950 p-3 border border-solid border-blue-400 rounded-lg" >
-        <div className="relative flex items-center">
+      <div className="bg-slate-950 border border-solid border-blue-400 rounded-lg flex flex-col">
+        <button
+          onClick={toggleModal}
+          className="relative p-3 flex items-center justify-between"
+        >
           <p>Select the muscle groups</p>
-          <i className="fa-solid absolute right-3 top-1/2 -translate-y-1/2 fa-caret-down"></i>
-        </div>
-        {showModel && (
-          <div>modal</div>
-        )}
+          <i className="fa-solid fa-caret-down"></i>
+        </button>
+        {showModel && <div>modal</div>}
       </div>
     </Sectionwrapper>
   );
