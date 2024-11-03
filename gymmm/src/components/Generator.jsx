@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Sectionwrapper from "./Sectionwrapper";
-import { WORKOUTS } from "../utils/swoldier";
+import { SCHEMES, WORKOUTS } from "../utils/swoldier";
 
 function Header(props) {
   const { index, title, description } = props;
@@ -19,10 +19,15 @@ function Header(props) {
 }
 
 export default function Generator() {
-  let showModel = false;
+
+  const  [showModel, setShowModel] = useState(false); 
+  const  [poison, setPoison] = useState('individual');
+  const [muscles, setMuscles] = useState([]);
+  const [goal, setGoal] = useState('strength_power');
+  
 
   function toggleModal() {
-    showModel = !showModel;
+    setShowModel(!showModel);
   }
 
   return (
@@ -38,16 +43,17 @@ export default function Generator() {
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {Object.keys(WORKOUTS).map((type, typeIndex) => {
-          return (
-            <button
+            return (
+            <button onClick={() => {setPoison(type)}}
+              
+              className={"bg-slate-950 border border-blue-400 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg" + (poison === type ? ' border-blue-900' : '')}
               key={typeIndex}
-              className="bg-slate-950 border border-blue-400 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg"
             >
               <p className=" capitalize text-white">
-                {type.replaceAll("_", " ")}
+              {type.replaceAll("_", " ")}
               </p>
             </button>
-          );
+            );
         })}
       </div>
       {/* //----------------------------------- */}
@@ -66,6 +72,29 @@ export default function Generator() {
           <i className="fa-solid fa-caret-down"></i>
         </button>
         {showModel && <div>modal</div>}
+      </div>
+      
+
+      <Header
+        index={"03"}
+        title={"Become the Wick"}
+        description={"Select the goal you want to achieve"}
+      />
+
+      <div className="grid grid-cols-3  gap-4">
+        {Object.keys(SCHEMES).map((scheme, schemeIndex) => {
+          return (
+            <button onClick={() => {setGoal(scheme)}}
+              
+              className={"bg-slate-950 border border-blue-400 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg" + (scheme === goal ? ' border-blue-900' : '')}
+              key={schemeIndex}
+            >
+              <p className=" capitalize text-white">
+              {scheme.replaceAll("_", " ")}
+              </p>
+            </button>
+          );
+        })}
       </div>
     </Sectionwrapper>
   );
